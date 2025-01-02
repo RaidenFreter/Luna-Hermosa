@@ -13,7 +13,10 @@
             color: white;
             position: relative;
             overflow: hidden;
-            background-color: pink; /* Set a pink background */
+            background-color: pink; /* Fallback background color */
+            background-image: url('https://i.ibb.co/FXYnj18/received-3444969905639410.png'); /* Add your background image URL here */
+            background-size: cover; /* Cover the entire screen */
+            background-position: center; /* Center the image */
         }
         .background {
             display: flex;
@@ -69,12 +72,12 @@
 <script>
     const quotes = [
         { text: "let you break my heart again.", url: "https://www.youtube.com/watch?v=C0ruAy8TpPo" },
-        { text: "Every moment matters.", url: "https://example.com/moment" },
-        { text: "Dream big, work hard.", url: "https://example.com/dream" },
-        { text: "Love is a beautiful journey.", url: "https://example.com/love" },
-        { text: "Time flies, but memories last.", url: "https://example.com/memories" },
-        { text: "Cherish every heartbeat.", url: "https://example.com/heartbeat" },
-        { text: "Hope is a powerful force.", url: "https://example.com/hope" }
+        { text: "promise.", url: "https://www.youtube.com/watch?v=5jQrBq6q3So" },
+        { text: "bewitched.", url: "https://www.youtube.com/watch?v=mT6ivC0ufkg" },
+        { text: "falling behind.", url: "https://www.youtube.com/watch?v=Vj2VHNvkBPA" },
+        { text: "from the start.", url: "https://www.youtube.com/watch?v=h8DeZSB2o-c" },
+        { text: "valentine.", url: "https://www.youtube.com/watch?v=Ejvz4EdcXM0" },
+        { text: "i wish you love.", url: "https://www.youtube.com/watch?v=DXvlYl5DLpI" }
     ];
 
     let currentIndex = 0;
