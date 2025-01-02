@@ -85,20 +85,27 @@
 
     function changeQuote() {
         const quoteElement = document.getElementById('quote');
-        quoteElement.classList.add('fade-out'); // Start fading out
 
-        setTimeout(() => {
-            currentIndex = (currentIndex + 1) % quotes.length; // Cycle through the quotes
-            const currentQuote = quotes[currentIndex];
-            quoteElement.innerText = currentQuote.text;
-            quoteElement.classList.remove('fade-out'); // Remove fade-out class
-            quoteElement.style.opacity = '1'; // Reset opacity for fade-in
+        // Handle the first quote redirect immediately
+        if (currentIndex === 0) {
+            window.location.href = quotes[currentIndex].url; // Redirect to the first quote URL
+            currentIndex++; // Move to the next index for subsequent clicks
+        } else {
+            quoteElement.classList.add('fade-out'); // Start fading out
 
-            // Redirect to the associated URL after a short delay
             setTimeout(() => {
-                window.location.href = currentQuote.url;
-            }, 200); // Adjust the delay as needed
-        }, 300); // Wait for the fade-out to finish (300 ms)
+                currentIndex = (currentIndex + 1) % quotes.length; // Cycle through the quotes
+                const currentQuote = quotes[currentIndex];
+                quoteElement.innerText = currentQuote.text;
+                quoteElement.classList.remove('fade-out'); // Remove fade-out class
+                quoteElement.style.opacity = '1'; // Reset opacity for fade-in
+
+                // Redirect to the associated URL after a short delay
+                setTimeout(() => {
+                    window.location.href = currentQuote.url;
+                }, 200); // Adjust the delay as needed
+            }, 300); // Wait for the fade-out to finish (300 ms)
+        }
     }
 
     const targetDate = new Date('June 14, 2025 00:00:00').getTime();
