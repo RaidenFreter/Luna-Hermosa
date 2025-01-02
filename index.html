@@ -42,11 +42,6 @@
             text-align: center;
             text-shadow: 2px 2px 10px rgba(0, 0, 0, 0.7);
             cursor: pointer; /* Change cursor to pointer */
-            transition: opacity 0.5s ease; /* Fade transition */
-            opacity: 1; /* Initial opacity */
-        }
-        .fade-out {
-            opacity: 0; /* Fade out */
         }
         /* Responsive styles */
         @media (max-width: 600px) {
@@ -86,7 +81,7 @@
     function changeQuote() {
         const quoteElement = document.getElementById('quote');
 
-        // Handle the first quote redirection
+        // Redirect immediately for the first quote
         if (currentIndex === 0) {
             window.location.href = quotes[currentIndex].url; // Redirect to the first quote URL
         } else {
@@ -100,6 +95,15 @@
             }, 200); // Short delay before redirect
         }
     }
+
+    // Set up the click handler for the first quote
+    document.getElementById('quote').onclick = function() {
+        if (currentIndex === 0) {
+            changeQuote(); // Handle the first click
+        } else {
+            changeQuote(); // Handle subsequent clicks
+        }
+    };
 
     const targetDate = new Date('June 14, 2025 00:00:00').getTime();
     const countdownElement = document.getElementById('countdown');
