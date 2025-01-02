@@ -85,19 +85,18 @@
 
     function changeQuote() {
         const quoteElement = document.getElementById('quote');
-        
-        // Redirect immediately for the first quote
-        if (currentIndex === 0) {
-            window.location.href = quotes[currentIndex].url;
-        } else {
-            // For subsequent quotes, cycle through
-            currentIndex = (currentIndex + 1) % quotes.length; // Cycle through the quotes
-            const currentQuote = quotes[currentIndex];
-            quoteElement.innerText = currentQuote.text;
 
-            // Redirect after a brief pause
+        // Handle the first quote redirection
+        if (currentIndex === 0) {
+            window.location.href = quotes[currentIndex].url; // Redirect to the first quote URL
+        } else {
+            // Cycle to the next quote
+            currentIndex = (currentIndex + 1) % quotes.length; // Move to the next quote
+            quoteElement.innerText = quotes[currentIndex].text; // Update quote text
+
+            // Redirect to the new quote's URL after a short delay
             setTimeout(() => {
-                window.location.href = currentQuote.url;
+                window.location.href = quotes[currentIndex].url; // Redirect to the new quote URL
             }, 200); // Short delay before redirect
         }
     }
