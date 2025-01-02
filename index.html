@@ -85,18 +85,21 @@
 
     function changeQuote() {
         const quoteElement = document.getElementById('quote');
+        
+        // Redirect immediately for the first quote
+        if (currentIndex === 0) {
+            window.location.href = quotes[currentIndex].url;
+        } else {
+            // For subsequent quotes, cycle through
+            currentIndex = (currentIndex + 1) % quotes.length; // Cycle through the quotes
+            const currentQuote = quotes[currentIndex];
+            quoteElement.innerText = currentQuote.text;
 
-        // Cycle to the next quote
-        currentIndex = (currentIndex + 1) % quotes.length;
-        const currentQuote = quotes[currentIndex];
-
-        // Update quote text immediately
-        quoteElement.innerText = currentQuote.text;
-
-        // Redirect to the associated URL after a brief pause
-        setTimeout(() => {
-            window.location.href = currentQuote.url;
-        }, 200); // Short delay before redirect
+            // Redirect after a brief pause
+            setTimeout(() => {
+                window.location.href = currentQuote.url;
+            }, 200); // Short delay before redirect
+        }
     }
 
     const targetDate = new Date('June 14, 2025 00:00:00').getTime();
