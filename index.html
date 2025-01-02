@@ -42,10 +42,11 @@
             text-align: center;
             text-shadow: 2px 2px 10px rgba(0, 0, 0, 0.7);
             cursor: pointer; /* Change cursor to pointer */
-            transition: transform 0.2s; /* Animation effect */
+            transition: opacity 0.5s ease; /* Fade transition */
+            opacity: 1; /* Initial opacity */
         }
-        .quote:active {
-            transform: scale(0.95); /* Scale down on click */
+        .fade-out {
+            opacity: 0; /* Fade out */
         }
         /* Responsive styles */
         @media (max-width: 600px) {
@@ -83,10 +84,21 @@
     let currentIndex = 0;
 
     function changeQuote() {
-        currentIndex = (currentIndex + 1) % quotes.length; // Cycle through the quotes
-        const currentQuote = quotes[currentIndex];
-        document.getElementById('quote').innerText = currentQuote.text;
-        window.location.href = currentQuote.url; // Redirect to the associated URL
+        const quoteElement = document.getElementById('quote');
+        quoteElement.classList.add('fade-out'); // Start fading out
+
+        setTimeout(() => {
+            currentIndex = (currentIndex + 1) % quotes.length; // Cycle through the quotes
+            const currentQuote = quotes[currentIndex];
+            quoteElement.innerText = currentQuote.text;
+            quoteElement.classList.remove('fade-out'); // Remove fade-out class
+            quoteElement.style.opacity = '1'; // Reset opacity for fade-in
+
+            // Redirect to the associated URL after a short delay
+            setTimeout(() => {
+                window.location.href = currentQuote.url;
+            }, 200); // Adjust the delay as needed
+        }, 500); // Wait for the fade-out to finish (500 ms)
     }
 
     const targetDate = new Date('June 14, 2025 00:00:00').getTime();
