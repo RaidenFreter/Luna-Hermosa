@@ -85,28 +85,18 @@
 
     function changeQuote() {
         const quoteElement = document.getElementById('quote');
+
+        // Cycle to the next quote
+        currentIndex = (currentIndex + 1) % quotes.length;
         const currentQuote = quotes[currentIndex];
 
-        // Redirect immediately for the first quote
-        if (currentIndex === 0) {
-            window.location.href = currentQuote.url; 
-            return; // Exit after redirecting
-        }
-        
-        quoteElement.classList.add('fade-out'); // Start fading out
+        // Update quote text immediately
+        quoteElement.innerText = currentQuote.text;
 
+        // Redirect to the associated URL after a brief pause
         setTimeout(() => {
-            currentIndex = (currentIndex + 1) % quotes.length; // Cycle through the quotes
-            const nextQuote = quotes[currentIndex];
-            quoteElement.innerText = nextQuote.text;
-            quoteElement.classList.remove('fade-out'); // Remove fade-out class
-            quoteElement.style.opacity = '1'; // Reset opacity for fade-in
-
-            // Redirect to the associated URL after a short delay
-            setTimeout(() => {
-                window.location.href = nextQuote.url;
-            }, 200); // Adjust the delay as needed
-        }, 500); // Wait for the fade-out to finish (500 ms)
+            window.location.href = currentQuote.url;
+        }, 200); // Short delay before redirect
     }
 
     const targetDate = new Date('June 14, 2025 00:00:00').getTime();
