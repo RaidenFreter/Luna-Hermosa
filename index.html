@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -64,10 +63,30 @@
 <div class="background">
     <div class="time-remaining">Rises The Moon:</div>
     <div class="countdown" id="countdown"></div>
-    <div class="quote" id="quote" onclick="window.location.href='https://www.youtube.com/watch?v=C0ruAy8TpPo'">let you break my heart again.</div>
+    <div class="quote" id="quote" onclick="changeQuote()">let you break my heart again.</div>
 </div>
 
-const targetDate = new Date('June 14, 2025 00:00:00').getTime();
+<script>
+    const quotes = [
+        { text: "let you break my heart again.", url: "https://www.youtube.com/watch?v=C0ruAy8TpPo" },
+        { text: "Every moment matters.", url: "https://example.com/moment" },
+        { text: "Dream big, work hard.", url: "https://example.com/dream" },
+        { text: "Love is a beautiful journey.", url: "https://example.com/love" },
+        { text: "Time flies, but memories last.", url: "https://example.com/memories" },
+        { text: "Cherish every heartbeat.", url: "https://example.com/heartbeat" },
+        { text: "Hope is a powerful force.", url: "https://example.com/hope" }
+    ];
+
+    let currentIndex = 0;
+
+    function changeQuote() {
+        currentIndex = (currentIndex + 1) % quotes.length; // Cycle through the quotes
+        const currentQuote = quotes[currentIndex];
+        document.getElementById('quote').innerText = currentQuote.text;
+        window.location.href = currentQuote.url; // Redirect to the associated URL
+    }
+
+    const targetDate = new Date('June 14, 2025 00:00:00').getTime();
     const countdownElement = document.getElementById('countdown');
 
     function updateCountdown() {
