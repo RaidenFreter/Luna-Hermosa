@@ -81,7 +81,6 @@
     ];
 
     let currentIndex = 0;
-
     function changeQuote() {
         const quoteElement = document.getElementById('quote');
         window.location.href = quotes[currentIndex].url;
@@ -95,13 +94,21 @@
         }, 500);
     }
 
-    // Updated target date to June 14, 2026
-    const targetDate = new Date('June 14, 2026 00:00:00').getTime();
+    // Use Date.UTC to avoid inconsistent parsing across browsers/locales.
+    // Note: months are 0-based (0 = January, 5 = June).
+    const targetDateMs = Date.UTC(2026, 5, 14, 0, 0, 0); // June 14, 2026 00:00:00 UTC
     const countdownElement = document.getElementById('countdown');
 
     function updateCountdown() {
-        const now = new Date().getTime();
-        const distance = targetDate - now;
+        const nowMs = Date.now(); // current time in ms (UTC-based epoch)
+        const distance = targetDateMs - nowMs;
+
+        if (distance <= 0) {
+            // target reached or passed
+            clearInterval(intervalId);
+            countdownElement.innerHTML = "Happy Birthday, Xylene Antonia Luna!";
+            return;
+        }
 
         const days = Math.floor(distance / (1000 * 60 * 60 * 24));
         const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
@@ -109,15 +116,11 @@
         const seconds = Math.floor((distance % (1000 * 60)) / 1000);
 
         countdownElement.innerHTML = `${days}d ${hours}h ${minutes}m ${seconds}s`;
-
-        if (distance < 0) {
-            clearInterval(x);
-            countdownElement.innerHTML = "Happy Birthday, Xylene Antonia Luna!";
-        }
     }
 
-    //  Define interval variable
-    const x = setInterval(updateCountdown, 1000);
+    // run immediately so the UI isn't blank/wrong for the first second
+    updateCountdown();
+    const intervalId = setInterval(updateCountdown, 1000);
 </script>
 
 </body>
