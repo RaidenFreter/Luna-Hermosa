@@ -13,10 +13,10 @@
             color: white;
             position: relative;
             overflow: hidden;
-            background-color: pink; /* Fallback background color */
-            background-image: url('https://images.unsplash.com/photo-1555231955-348aa2312e19?ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8NHx8cGluayUyMHdhbGxwYXBlcnxlbnwwfHwwfHx8MA%3D%3D&fm=jpg&q=60&w=3000'); /* Add your background image URL here */
-            background-size: cover; /* Cover the entire screen */
-            background-position: center; /* Center the image */
+            background-color: pink;
+            background-image: url('https://images.unsplash.com/photo-1555231955-348aa2312e19?ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8NHx8cGluayUyMHdhbGxwYXBlcnxlbnwwfHwwfHx8MA%3D%3D&fm=jpg&q=60&w=3000');
+            background-size: cover;
+            background-position: center;
         }
         .background {
             display: flex;
@@ -41,14 +41,13 @@
             font-family: 'Dancing Script', cursive;
             text-align: center;
             text-shadow: 2px 2px 10px rgba(0, 0, 0, 0.7);
-            cursor: pointer; /* Change cursor to pointer */
-            transition: opacity 0.5s ease; /* Fade transition */
-            opacity: 1; /* Initial opacity */
+            cursor: pointer;
+            transition: opacity 0.5s ease;
+            opacity: 1;
         }
         .fade-out {
-            opacity: 0; /* Fade out */
+            opacity: 0;
         }
-        /* Responsive styles */
         @media (max-width: 600px) {
             .time-remaining {
                 font-size: 1.5em;
@@ -85,24 +84,19 @@
 
     function changeQuote() {
         const quoteElement = document.getElementById('quote');
-        
-        // Redirect to the current quote URL
         window.location.href = quotes[currentIndex].url;
-
-        // Fade out the current quote
         quoteElement.classList.add('fade-out');
-
         setTimeout(() => {
-            // Increment the index for the next quote
-            currentIndex = (currentIndex + 1) % quotes.length; // Cycle through the quotes
+            currentIndex = (currentIndex + 1) % quotes.length;
             const currentQuote = quotes[currentIndex];
             quoteElement.innerText = currentQuote.text;
-            quoteElement.classList.remove('fade-out'); // Remove fade-out class
-            quoteElement.style.opacity = '1'; // Reset opacity for fade-in
-        }, 500); // Wait for the fade-out to finish (500 ms)
+            quoteElement.classList.remove('fade-out');
+            quoteElement.style.opacity = '1';
+        }, 500);
     }
 
-    const targetDate = new Date('June 14, 2025 00:00:00').getTime();
+    // Updated target date to June 14, 2026
+    const targetDate = new Date('June 14, 2026 00:00:00').getTime();
     const countdownElement = document.getElementById('countdown');
 
     function updateCountdown() {
@@ -122,7 +116,8 @@
         }
     }
 
-    setInterval(updateCountdown, 1000);
+    //  Define interval variable
+    const x = setInterval(updateCountdown, 1000);
 </script>
 
 </body>
